@@ -1,0 +1,14 @@
+include distroconfig.txt
+
+[all]
+network.loopback=interface
+network.loopback.ifname='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1'
+network.loopback.netmask='255.0.0.0'
+network.globals=globals
+network.globals.ula_prefix='fd67:f183:e1c6::/48'
+
+network.wan=interface
+network.wan.ifname='eth0'
+network.wan.proto='dhcp'

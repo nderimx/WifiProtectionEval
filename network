@@ -1,0 +1,26 @@
+config interface 'loopback'
+        option device 'lo'
+        option proto 'static'
+        option ipaddr '127.0.0.1'
+        option netmask '255.0.0.0'
+
+config globals 'globals'
+        option ula_prefix 'fd88:0770:6cd2::/48'
+
+config interface 'wan'
+        option proto 'dhcp'
+        option device 'eth0'
+        option peerdns '0'
+        option dns '1.1.1.2,1.0.0.2'
+
+config interface 'lan'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option ip6assign '60'
+        option ipaddr '11.11.11.254'
+        list dns '1.1.1.2'
+        list dns '1.0.0.2'
+
+config interface 'vpnclient'
+        option proto 'none'
+        option device 'tun0'

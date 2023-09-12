@@ -1,0 +1,15 @@
+opkg update
+opkg install kmod-rt2800-lib kmod-rt2800-usb kmod-rt2x00-lib kmod-rt2x00-usb kmod-usb-core kmod-usb-uhci kmod-usb-ohci kmod-usb2 usbutils openvpn-openssl luci-app-openvpn
+
+service network restart
+
+uci show network
+
+uci commit wireless
+wifi
+
+lsusb
+
+dmesg
+
+cat /sys/kernel/debug/usb/devices
