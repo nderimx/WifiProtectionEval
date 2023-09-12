@@ -43,14 +43,21 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 2. `gzip -d openwrt-*.img.gz`
 3. `VBoxManage convertfromraw --format VDI openwrt-*.img openwrt.vdi`
 4. `VBoxManage modifymedium openwrt.vdi --resize 128`
+5. Create a new virtual machine with the openwrt.vdi drive attached
+6. Clone this VM to create the virtual public and private routers
+7. Attach 3 network adapters to the public router: Host only, NAT and Internal Network pubnet (Host only serves for remote ssh connection from host for headless operation)
+8. Attach 2 network adapter (Internal Networks) to the private router: pubnet and privnet
+9. Create a kali or parrot VM connected to the Internal Network pubnet
+10. Create a windows VM for each pubnet and privnet
+11. Apply configurations to the routers
 
 ![Virtual Network](illustrations/virtual_environment.png "Virtual Environmnent")
 
 ### VPN Setup:
 - <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
 
-### Eliminate *[DNS](https://dnsleaktest.com/)* and *[WebRTC](https://ipleak.net/)* leaks:
-- 
+### Eliminate for *[DNS](https://dnsleaktest.com/)* and *[WebRTC](https://ipleak.net/)* leaks:
+Make sure the end device uses the gateway's DNS settings and an up-to-date web browser.
 
 ### *[Firewall Setup](https://openwrt.org/docs/guide-user/firewall/firewall_configuration)*:
 - 
