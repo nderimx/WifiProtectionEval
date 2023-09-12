@@ -36,12 +36,15 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 18. `wifi`
 19. Insert the USB Wifi Adapter
 
+![Public Network](illustrations/public_network.png "Public Network")
+
 ### *[Steps](https://openwrt.org/docs/guide-user/virtualization/virtualbox-vm)* to reproduce Virtual Router Setup:
 1. Download *[openwrt image](https://archive.openwrt.org/releases/22.03.5/targets/x86/64/openwrt-22.03.5-x86-64-generic-ext4-combined.img.gz)* (for your machine's architecture)
 2. `gzip -d openwrt-*.img.gz`
 3. `VBoxManage convertfromraw --format VDI openwrt-*.img openwrt.vdi`
 4. `VBoxManage modifymedium openwrt.vdi --resize 128`
 
+![Virtual Network](illustrations/virtual_environment.png "Virtual Environmnent")
 
 ### VPN Setup:
 - <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
@@ -64,3 +67,15 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 ### Testing and Data Gathering
 
 ## Evaluation Methodologies
+
+
+#### Commands Cheatsheet
+- `lsusb`
+- `dmesg`
+- `cat /sys/kernel/debug/usb/devices`
+- `opkg update`
+- `opkg install <package>`
+- `service network restart`
+- `uci show network`
+- `uci commit wireless`
+- `wifi`
