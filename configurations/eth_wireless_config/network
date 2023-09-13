@@ -21,6 +21,6 @@ config interface 'lan'
         list dns '1.1.1.2'
         list dns '1.0.0.2'
 
-config interface 'vpnclient'
-        option proto 'none'
+config interface 'vpn'
         option device 'tun0'
+        option proto 'none'

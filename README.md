@@ -56,11 +56,34 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 ### VPN Setup:
 - <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
 
-### Eliminate for *[DNS](https://dnsleaktest.com/)* and *[WebRTC](https://ipleak.net/)* leaks:
+### Eliminate *[DNS](https://dnsleaktest.com/)* and *[WebRTC](https://ipleak.net/)* leaks:
 Make sure the end device uses the gateway's DNS settings and an up-to-date web browser.
 
 ### *[Firewall Setup](https://openwrt.org/docs/guide-user/firewall/firewall_configuration)*:
-- 
+Replace the firewall configuration file in /etc/config with the one from this repository
+#### Firewall Modifications
+##### Default
+1. Drop crafted packets: `option drop_invalid '1'`
+2. SYN flood protection:
+    - `option	synflood_protect	'1'`
+	- `option	synflood_rate		'25/s'`
+	- `option	synflood_burst		'50'`
+	- `option	tcp_syncookies		'1'`
+##### WAN zone
+1. Reject inbound traffic from wan and vpn networks: `option input 'REJECT'`
+2. Enable NAT towards this zone: `option masq '1'` (Translates addresses from other zones and presents them to this one)
+3. Include `tun0` interface to give access to lan devices (there are other implementations aswell)
+    - `list device 'tun0'`
+    - `list network 'wan'`
+    - `list network 'wan6'`
+
+#### Forwarding
+Enable lan zone to have access to the wan zone:
+```
+config forwarding
+    option src 'lan'
+    option dest 'wan'
+```
 
 ## Attack Setup
 
