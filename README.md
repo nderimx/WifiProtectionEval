@@ -109,3 +109,4 @@ config forwarding
 - `uci show network`
 - `uci commit wireless`
 - `wifi`
+- `iwinfo wlan0 scan`
