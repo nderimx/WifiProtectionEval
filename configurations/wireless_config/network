@@ -7,8 +7,14 @@ config interface 'loopback'
 config globals 'globals'
         option ula_prefix 'fd80:1223:4d4e::/48'
 
+config device
+        option name 'br-lan'
+        option type 'bridge'
+        list ports 'eth0'
+        list ports 'wlan1'
+
 config interface 'lan'
-        option device 'wlan1'
+        option device 'br-lan'
         option proto 'static'
         option ipaddr '11.11.11.254'
         option netmask '255.255.255.0'
