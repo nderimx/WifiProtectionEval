@@ -54,7 +54,43 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 ![Virtual Network](illustrations/virtual_environment.png "Virtual Environmnent")
 
 ### VPN Setup:
-- <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
+#### GUI setup:  <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
+#### Setup from the shell
+##### Directory Hierarchy
+Three files need to be edited (besides the firewall):
+- `/etc/openvpn/myvpn.auth`
+- `/etc/openvpn/myvpn.ovpn`
+- `/etc/config/openvpn
+`myvpn` is arbitrary, and can be changed to anything, as long as it matches everywhere.
+##### myvpn.auth
+This file contains username and password for the vpn connection (both look like hashes, and re seperated by a new line)
+
+##### myvpn.ovpn
+This is the downloaded config file from your vpn prvider's download page.
+Must be edited:
+```
+.
+.
+.
+remote-cert-tls server
+auth-user-pass /etc/openvpn/myvpn.auth
+pull
+fast-io
+.
+.
+.
+```
+This file should be renamed to myvpn.ovpn (change myvpn to anything) and placed in /etc/openvpn
+There should be only `auth-user-pass` present, instead of `auth-user-pass /etc/openvpn/myvpn.auth`, so the last part should be added.
+
+##### /etc/config/openvpn
+Must contains:
+```
+config openvpn 'myvpn'
+    option config 'etc/openvpn/myvpn.ovpn'
+    option enabled '1'
+```
+The firewall modifications for the vpn are shown in the Firewall Setup section.
 
 ### Eliminate *[DNS](https://dnsleaktest.com/)* and *[WebRTC](https://ipleak.net/)* leaks:
 Make sure the end device uses the gateway's DNS settings and an up-to-date web browser.
