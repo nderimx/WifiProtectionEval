@@ -53,8 +53,10 @@ Documentation and the Configuration of the project: Intermidiary Gateway in Publ
 
 ![Virtual Network](illustrations/virtual_environment.png "Virtual Environmnent")
 
-### VPN Setup:
-#### GUI setup:  <https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
+### VPN Setup
+#### GUI setup:
+<https://protonvpn.com/support/how-to-set-up-protonvpn-on-openwrt-routers/>
+
 #### Setup from the shell
 ##### Directory Hierarchy
 Three files need to be edited (besides the firewall):
@@ -63,7 +65,7 @@ Three files need to be edited (besides the firewall):
 - `/etc/config/openvpn
 `myvpn` is arbitrary, and can be changed to anything, as long as it matches everywhere.
 ##### myvpn.auth
-This file contains username and password for the vpn connection (both look like hashes, and re seperated by a new line)
+This file contains username and password for the vpn connection (both look like hashes, and are seperated by a new line)
 
 ##### myvpn.ovpn
 This is the downloaded config file from your vpn prvider's download page.
@@ -80,11 +82,12 @@ fast-io
 .
 .
 ```
-This file should be renamed to myvpn.ovpn (change myvpn to anything) and placed in /etc/openvpn
+This file should be renamed to myvpn.ovpn (change myvpn to anything) and placed in `/etc/openvpn`.
+
 There should be only `auth-user-pass` present, instead of `auth-user-pass /etc/openvpn/myvpn.auth`, so the last part should be added.
 
 ##### /etc/config/openvpn
-Must contains:
+Must contain:
 ```
 config openvpn 'myvpn'
     option config 'etc/openvpn/myvpn.ovpn'
